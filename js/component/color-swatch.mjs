@@ -32,6 +32,20 @@ export class ColorSwatchComponent extends HTMLElement {
     });
     this.editColorButtonElement = document.createElement('label');
     this.editColorButtonElement.appendChild(createIcon('edit'));
+
+    // Create remove button.
+    this.removeButtonElement = document.createElement('button');
+    this.removeButtonElement.addEventListener('click', (_) => {
+      self.remove();
+
+      // Hide remove button if there is only one swatch.
+      const colorSwatchComponents = document.querySelectorAll('color-swatch');
+      for (const component of colorSwatchComponents) {
+        component.removeButtonElement.style.display =
+          colorSwatchComponents.length === 1 ? 'none' : 'flex';
+      }
+    });
+    this.removeButtonElement.appendChild(createIcon('delete'));
   }
 
   attributeChangedCallback(attributeName, _oldValue, newValue) {
@@ -81,7 +95,7 @@ export class ColorSwatchComponent extends HTMLElement {
     const actionsContainer = Object.assign(document.createElement('div'), {
       className: 'actions-container',
     });
-    actionsContainer.append(editColorContainer);
+    actionsContainer.append(editColorContainer, this.removeButtonElement);
 
     // Set up values container.
     const valuesContainer = Object.assign(document.createElement('div'), {

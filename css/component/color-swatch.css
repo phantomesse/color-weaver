@@ -24,6 +24,30 @@ color-swatch {
     margin-bottom: auto;
     width: 100%;
 
+    button,
+    label {
+      align-items: center;
+      background: none;
+      border-radius: 50%;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      height: var(--action-size);
+      justify-content: center;
+      width: var(--action-size);
+    }
+
+    button:hover,
+    label:hover {
+      background: var(--selection-bg-color);
+      color: var(--swatch-color);
+    }
+
+    span {
+      font-size: 18px;
+    }
+
     .edit-color-action {
       position: relative;
 
@@ -35,25 +59,6 @@ color-swatch {
         padding: 0;
         position: absolute;
         width: 0;
-      }
-
-      label {
-        align-items: center;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        height: var(--action-size);
-        justify-content: center;
-        width: var(--action-size);
-      }
-
-      label:hover {
-        background: var(--selection-bg-color);
-        color: var(--swatch-color);
-      }
-
-      span {
-        font-size: 18px;
       }
     }
   }
