@@ -6,6 +6,10 @@ import {
   getContrastingColor,
 } from '../utils/contrast.mjs';
 import { getRandomNumber } from '../utils/random.mjs';
+import {
+  addSwatchCountChangeEventListener,
+  dispatchSwatchCountChangeEvent,
+} from '../event/swatch-count-change-event.mjs';
 
 export class ColorSwatchComponent extends HTMLElement {
   static observedAttributes = ['hex'];
@@ -37,15 +41,13 @@ export class ColorSwatchComponent extends HTMLElement {
     this.removeButtonElement = document.createElement('button');
     this.removeButtonElement.addEventListener('click', (_) => {
       self.remove();
-
-      // Hide remove button if there is only one swatch.
-      const colorSwatchComponents = document.querySelectorAll('color-swatch');
-      for (const component of colorSwatchComponents) {
-        component.removeButtonElement.style.display =
-          colorSwatchComponents.length === 1 ? 'none' : 'flex';
-      }
+      dispatchSwatchCountChangeEvent();
     });
     this.removeButtonElement.appendChild(createIcon('delete'));
+    addSwatchCountChangeEventListener((colorSwatchCount) => {
+      self.removeButtonElement.style.display =
+        colorSwatchCount === 1 ? 'none' : 'flex';
+    });
   }
 
   attributeChangedCallback(attributeName, _oldValue, newValue) {

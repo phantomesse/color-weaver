@@ -35,8 +35,7 @@ header {
 }
 
 main {
-  display: grid;
+  display: flex;
   flex-grow: 1;
-  grid-template-columns: repeat(3, 1fr);
   width: 100%;
 }
