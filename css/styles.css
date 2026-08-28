@@ -1,0 +1,42 @@
+@import 'component/color-swatch.css';
+
+:root {
+  --primary-bg-color: #262626;
+  --primary-container-bg-color: #4d403a;
+  --primary-fg-color: #faf8f5;
+}
+
+html,
+body {
+  background: var(--primary-bg-color);
+  color: var(--primary-fg-color);
+  font-optical-sizing: auto;
+  font: 20px "Quicksand", sans-serif;
+  height: 100%;
+  line-height: 24px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  padding: 0 24px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+}
+
+main {
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+}

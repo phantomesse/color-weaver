@@ -1,0 +1,15 @@
+{
+  "name": "color-weaver",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phantomesse/color-weaver.git"
+  },
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "python3 -m http.server",
+    "test": "node --test test/**/*"
+  }
+}
