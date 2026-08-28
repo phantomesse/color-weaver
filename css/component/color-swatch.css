@@ -17,6 +17,47 @@ color-swatch {
     color: var(--swatch-color);
   }
 
+  .actions-container {
+    --action-size: 32px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: auto;
+    width: 100%;
+
+    .edit-color-action {
+      position: relative;
+
+      input[type=color] {
+        border: 0;
+        bottom: 0;
+        height: 0;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 0;
+      }
+
+      label {
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        height: var(--action-size);
+        justify-content: center;
+        width: var(--action-size);
+      }
+
+      label:hover {
+        background: var(--selection-bg-color);
+        color: var(--swatch-color);
+      }
+
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+
   h2 {
     font-size: 24px;
     font-weight: 600;
@@ -39,4 +80,5 @@ color-swatch {
       font-weight: 600;
     }
   }
+
 }
