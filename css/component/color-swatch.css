@@ -4,12 +4,14 @@ color-swatch {
 
   background: var(--swatch-color);
   box-sizing: border-box;
+  container-name: color-swatch;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
+  gap: 12px;
   height: 100%;
   justify-content: flex-end;
   padding: 24px;
-  gap: 12px;
   width: 100%;
 
   ::selection {
@@ -68,6 +70,8 @@ color-swatch {
     font-weight: 600;
     line-height: 24px;
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .values-container {
@@ -83,6 +87,24 @@ color-swatch {
 
     span {
       font-weight: 600;
+    }
+  }
+
+  @container color-swatch (width < 240px) {
+    .values-container {
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  @container color-swatch (width < 200px) {
+    .values-container {
+      display: flex;
+      flex-direction: column;
+
+      label:not(:first-of-type) {
+        margin-top: 12px;
+      }
     }
   }
 

@@ -55,4 +55,5 @@ function setColorSwatchGridFlow(colorSwatchCount) {
   }
 
   mainElement.style.display = 'flex';
+  mainElement.style.flexDirection = colorSwatchCount > 10 ? 'column' : 'row';
 }
