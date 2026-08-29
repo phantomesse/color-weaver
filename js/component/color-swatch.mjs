@@ -37,13 +37,23 @@ export class ColorSwatchComponent extends HTMLElement {
     this.editColorButtonElement = document.createElement('label');
     this.editColorButtonElement.appendChild(createIcon('edit'));
 
+    // Create duplicate button.
+    this.duplicateButtonElement = document.createElement('button');
+    this.duplicateButtonElement.appendChild(createIcon('content_copy'));
+    this.duplicateButtonElement.addEventListener('click', (_) => {
+      const colorSwatchElement = document.createElement('color-swatch');
+      colorSwatchElement.setAttribute('hex', self.getAttribute('hex'));
+      this.insertAdjacentElement('afterEnd', colorSwatchElement);
+      dispatchSwatchCountChangeEvent();
+    });
+
     // Create remove button.
     this.removeButtonElement = document.createElement('button');
+    this.removeButtonElement.appendChild(createIcon('delete'));
     this.removeButtonElement.addEventListener('click', (_) => {
       self.remove();
       dispatchSwatchCountChangeEvent();
     });
-    this.removeButtonElement.appendChild(createIcon('delete'));
     addSwatchCountChangeEventListener((colorSwatchCount) => {
       self.removeButtonElement.style.display =
         colorSwatchCount === 1 ? 'none' : 'flex';
@@ -97,7 +107,11 @@ export class ColorSwatchComponent extends HTMLElement {
     const actionsContainer = Object.assign(document.createElement('div'), {
       className: 'actions-container',
     });
-    actionsContainer.append(editColorContainer, this.removeButtonElement);
+    actionsContainer.append(
+      editColorContainer,
+      this.duplicateButtonElement,
+      this.removeButtonElement,
+    );
 
     // Set up values container.
     const valuesContainer = Object.assign(document.createElement('div'), {
