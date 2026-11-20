@@ -1,31 +1,22 @@
 import { ColorSwatchComponent } from './component/color-swatch.mjs';
 import { addSwatchCountChangeEventListener } from './event/swatch-count-change-event.mjs';
 import { getRandomHex } from './utils/libraries.mjs';
+import { getRandomNumber } from './utils/random.mjs';
 
 customElements.define('color-swatch', ColorSwatchComponent);
 
-const randomHexValues = [
-  getRandomHex(),
-  getRandomHex(),
-  getRandomHex(),
-  getRandomHex(),
-  getRandomHex(),
-  getRandomHex(),
-  getRandomHex(),
-  getRandomHex(),
-  getRandomHex(),
-];
-
+// Generate a random number of color swatches.
 const mainElement = document.getElementsByTagName('main')[0];
-for (const hex of randomHexValues) {
+const colorSwatchCount = getRandomNumber(2, 10);
+for (let i = 0; i < colorSwatchCount; i++) {
   const colorSwatchComponent = document.createElement('color-swatch');
-  colorSwatchComponent.setAttribute('hex', hex);
+  colorSwatchComponent.setAttribute('hex', getRandomHex());
   mainElement.appendChild(colorSwatchComponent);
 }
 
 // Update grid flow based on number of color swatches.
 addSwatchCountChangeEventListener(setColorSwatchGridFlow);
-setColorSwatchGridFlow(randomHexValues.length);
+setColorSwatchGridFlow(colorSwatchCount);
 
 function setColorSwatchGridFlow(colorSwatchCount) {
   const mainElement = document.getElementsByTagName('main')[0];
